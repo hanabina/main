@@ -1,1 +1,198 @@
-file:///C:/Users/LIS/Downloads/%EC%9D%B8%EA%B3%B5%EC%A7%80%EB%8A%A5%EA%B3%BC%EC%A0%9C2%20(1).html
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>세계경제</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      flex-direction: column;
+    }
+    header {
+      background-color: #1a1a1a;
+      color: white;
+      padding: 20px;
+      text-align: center;
+      font-size: 2em;
+    }
+    nav {
+      display: flex;
+      justify-content: center;
+      background-color: #333;
+    }
+    nav button {
+      background: none;
+      border: none;
+      color: white;
+      padding: 15px 25px;
+      cursor: pointer;
+      font-size: 1em;
+    }
+    nav button:hover {
+      background-color: #555;
+    }
+    #main {
+      display: flex;
+    }
+    aside {
+      width: 200px;
+      background-color: #f0f0f0;
+      padding: 20px;
+      box-sizing: border-box;
+    }
+    aside button {
+      display: block;
+      width: 100%;
+      margin: 10px 0;
+      padding: 10px;
+      background-color: white;
+      border: 1px solid #ccc;
+      cursor: pointer;
+    }
+    aside button:hover {
+      background-color: #ddd;
+    }
+    #content {
+      flex: 1;
+      padding: 30px;
+      max-width: 800px;
+      box-sizing: border-box;
+    }
+    video {
+      max-width: 100%;
+      height: auto;
+      display: block;
+      margin-bottom: 20px;
+    }
+  </style>
+</head>
+<body>
+
+  <header>세계경제</header>
+
+  <nav>
+    <button onclick="showIntro()">세계경제</button>
+    <button onclick="showRegion('asia')">아시아</button>
+    <button onclick="showRegion('europe')">유럽</button>
+    <button onclick="showRegion('america')">아메리카</button>
+    <button onclick="showRegion('oceania')">오세아니아</button>
+    <button onclick="showRegion('africa')">아프리카</button>
+  </nav>
+
+  <div id="main">
+    <aside id="sidebar"></aside>
+    <div id="content">
+      <video controls>
+        <source src="intro.mp4" type="video/mp4">
+        브라우저가 비디오를 지원하지 않습니다.
+      </video>
+      <p>
+        이 웹사이트는 G20 국가를 중심으로 각 지역의 주요 산업 및 경제 발전 역사를 소개합니다.<br>
+        아시아, 유럽, 아메리카 등 각 대륙을 클릭해 다양한 정보를 탐색해보세요.
+      </p>
+    </div>
+  </div>
+
+  <script>
+    const countries = {
+      asia: {
+        '대한민국': {
+          overview: '대한민국은 고도로 산업화된 경제를 가진 국가로, 수출 중심 경제 구조를 가지고 있습니다.',
+          recent: '반도체, 배터리, AI 산업을 중심으로 정부와 민간이 협력하고 있습니다.',
+          history: '1960년대 경공업 중심 → 1990년대 IT 성장 → 현재 첨단 제조업 중심.'
+        },
+        '일본': {
+          overview: '일본은 세계적인 기술 및 제조업 강국입니다.',
+          recent: '로봇, 전자, 자동차 산업의 글로벌 선두주자.',
+          history: '전후 재건 → 1980년대 기술 중심 성장 → 현재 첨단기술 유지.'
+        },
+        '중국': {
+          overview: '중국은 세계 제2위의 경제 대국이며 제조업 중심 국가입니다.',
+          recent: '스마트 제조, AI, 반도체 기술에 적극 투자 중.',
+          history: '계획경제 → 개혁개방 → 글로벌 생산 허브로 발전.'
+        },
+        '인도': {
+          overview: '인도는 빠르게 성장 중인 신흥 경제 국가입니다.',
+          recent: 'IT, 우주항공, 제조업 확대 중.',
+          history: '농업 중심 → 서비스와 기술 산업 급성장 중.'
+        },
+        '인도네시아': {
+          overview: '동남아시아 최대 경제 국가로 성장 중입니다.',
+          recent: '전기차 산업, 디지털 경제 육성 중.',
+          history: '자원 수출 중심 → 제조업 기반 확대 중.'
+        },
+        '사우디아라비아': {
+          overview: '석유 중심의 경제 구조를 가진 중동 주요 국가입니다.',
+          recent: '비전 2030에 따라 비석유 산업 다각화 중.',
+          history: '석유 발견 → 에너지 산업 중심 → 산업 다각화 시도.'
+        },
+        '터키': {
+          overview: '유럽과 아시아를 잇는 전략적 위치의 국가입니다.',
+          recent: '방위산업, 인프라 산업 육성 중.',
+          history: '전통 산업 기반 → 제조업 및 서비스업 확대.'
+        }
+      },
+      europe: {
+        '독일': { overview: '유럽 최대의 경제 대국이자 제조업 강국.', recent: '자동차, 기계공학, 친환경 산업.', history: '산업혁명 주도 → 유럽 제조 중심지.' },
+        '프랑스': { overview: '문화·패션·기술이 융합된 선진국.', recent: '항공, 에너지, 럭셔리 산업 중심.', history: '농업→산업화→첨단 기술 선도.' },
+        '영국': { overview: '세계 금융 중심지.', recent: '핀테크, 에너지, AI.', history: '산업혁명 발원지 → 금융 및 IT 산업 성장.' },
+        '이탈리아': { overview: '디자인, 패션, 제조업 강국.', recent: '기계, 섬유, 식품 가공 산업.', history: '전통 제조 → 중소기업 기반 산업 유지.' },
+        '러시아': { overview: '천연자원과 에너지 산업 중심 국가.', recent: '에너지 수출, 군수 산업 중심.', history: '소련 경제 해체 이후 자원 중심 경제.' },
+        'EU': { overview: '유럽 연합으로서 단일 시장과 통화권을 가진 경제 블록.', recent: '디지털 전환, 친환경 전환 중점.', history: '공동체 통합 → 유로존 구축 → 경제 협력 강화.' }
+      },
+      america: {
+        '미국': { overview: '세계 최대의 경제 대국.', recent: 'AI, 반도체, 친환경 에너지.', history: '산업화 → 정보화 → 디지털 경제 주도.' },
+        '캐나다': { overview: '자원과 금융 중심의 안정된 경제 구조.', recent: '에너지, 기술 스타트업 육성 중.', history: '자원 기반 성장 → 기술 산업 확장.' },
+        '멕시코': { overview: '북미와 남미를 잇는 전략적 경제 위치.', recent: '자동차, 전자, 항공산업 발전 중.', history: 'NAFTA 이후 제조업 급성장.' },
+        '아르헨티나': { overview: '남미의 농업 중심 국가.', recent: '농산물 가공, 에너지 산업 육성.', history: '자원 중심 → 경제 위기 → 다각화 시도.' },
+        '브라질': { overview: '남미 최대 경제 규모 국가.', recent: '농업, 항공, 바이오 에너지.', history: '농업 기반 성장 → 산업 다변화 중.' }
+      },
+      oceania: {
+        '오스트레일리아': { overview: '자원 중심 수출국.', recent: '광산업, 에너지, 교육 산업 중심.', history: '광물 수출 중심 → 서비스업 확대.' }
+      },
+      africa: {
+        '남아프리카공화국': { overview: '아프리카 대표 선진 경제국.', recent: '광산업, 제조업, 관광업.', history: '자원 중심 성장 → 산업 다변화 시도.' }
+      }
+    };
+
+    function showIntro() {
+      document.getElementById("sidebar").innerHTML = "";
+      document.getElementById("content").innerHTML = `
+        <video controls>
+          <source src="intro.mp4" type="video/mp4">
+          브라우저가 비디오를 지원하지 않습니다.
+        </video>
+        <p>
+          이 웹사이트는 G20 국가를 중심으로 각 지역의 주요 산업 및 경제 발전 역사를 소개합니다.<br>
+          아시아, 유럽, 아메리카 등 각 대륙을 클릭해 다양한 정보를 탐색해보세요.
+        </p>
+      `;
+    }
+
+    function showRegion(region) {
+      const countryList = countries[region];
+      let buttons = '<h3>국가 목록</h3>';
+      for (let name in countryList) {
+        buttons += `<button onclick=\"showCountryInfo('${region}','${name}')\">${name}</button>`;
+      }
+      document.getElementById("sidebar").innerHTML = buttons;
+      document.getElementById("content").innerHTML = `<p>국가를 선택하면 상세 정보가 표시됩니다.</p>`;
+    }
+
+    function showCountryInfo(region, country) {
+      const info = countries[region][country];
+      document.getElementById("content").innerHTML = `
+        <h2>${country}</h2>
+        <p><strong>전반적인 경제 상황:</strong> ${info.overview}</p>
+        <p><strong>최근 추진 산업 및 상황:</strong> ${info.recent}</p>
+        <p><strong>산업 발전 역사:</strong> ${info.history}</p>
+      `;
+    }
+  </script>
+
+</body>
+</html>
